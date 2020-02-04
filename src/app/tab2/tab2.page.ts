@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { WetherService } from '../services/wether.service';
+import { Wether } from '../classes/wether';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,16 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  private hourly: Array<Wether> = new Array<Wether>();
+  constructor(private wetherService: WetherService) {
+    wetherService.getWether().subscribe((element:any) => {
+      element.hourly.data.forEach(element => {
+        let now:number = +(new Date().getTime() / 1000).toFixed(0);
+        if(element.time > now && element.time < now + 43200){
+          this.hourly.push(element);
+        }
+      });
+    });
+  }
 
 }

@@ -1,41 +1,41 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab One
+      Actual
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
+    <ion-card class="welcome-card" class="ion-text-center">
+      <img src="" />
       <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
+        <ion-card-subtitle>Temperatura a las {{ currently?.time * 1000 | date:'HH:mm' }} del día {{ currently?.time * 1000 | date:'dd-MM-yyyy' }}</ion-card-subtitle>
+        <ion-card-title>{{ currently?.temperature.toFixed(1) }}°</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+        <p>{{ currently?.summary }}</p>
       </ion-card-content>
     </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
+    <ion-list>
+      <ion-item>
+        <ion-label>Sensación Térmica:</ion-label>
+        <ion-label class="ion-text-right">{{currently?.apparentTemperature.toFixed(1)}}°</ion-label>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
+      <ion-item>
+        <ion-label>Probabilidad de lluvias:</ion-label>
+        <ion-label class="ion-text-right">{{currently?.precipProbability * 100}}%</ion-label>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
+    </ion-list>
+    
+    <ion-item>
+      <ion-label position="floating">Ingrese ciudad</ion-label>
+      <ion-input (ionInput)="autocomplete($event.target.value)"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let city of cities">
+        <ion-label>{{city?.city}}</ion-label>
       </ion-item>
     </ion-list>
 </ion-content>

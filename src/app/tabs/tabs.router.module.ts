@@ -4,11 +4,11 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'clima',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'actual',
         children: [
           {
             path: '',
@@ -18,7 +18,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'diario',
         children: [
           {
             path: '',
@@ -28,7 +28,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+        path: 'mensual',
         children: [
           {
             path: '',
@@ -39,14 +39,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/clima/actual',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/clima/actual',
     pathMatch: 'full'
   }
 ];

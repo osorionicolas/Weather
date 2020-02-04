@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Two
+      Diario
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let hour of hourly">
+      <ion-label>{{hour?.time * 1000 | date:'HH:mm'}}</ion-label>
+      <ion-label class="ion-text-right">{{hour?.temperature.toFixed(1)}}°</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

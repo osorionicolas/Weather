@@ -1,9 +1,17 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Three
+      Mensual
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let day of daily">
+      <ion-label>{{day?.dayOfTheWeek}} {{ day?.time * 1000 | date:'dd' }}</ion-label>
+      <ion-label class="ion-text-right">{{day?.temperatureLow.toFixed(0)}}° - {{day?.temperatureHigh.toFixed(0)}}°</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+  
